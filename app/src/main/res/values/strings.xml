@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Flour Hour</string>
+    <string name="action_settings">Settings</string>
+    <string name="click_description">Click to add flour</string>
+</resources>

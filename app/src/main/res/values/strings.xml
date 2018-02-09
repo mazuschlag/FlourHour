@@ -2,4 +2,22 @@
     <string name="app_name">Flour Hour</string>
     <string name="action_settings">Settings</string>
     <string name="click_description">Click to add flour</string>
+    <string name="count_init">0</string>
+    <string name="increment_by">Increment By</string>
+    <string name="increments_list_key">increments_list</string>
+    <string name="target_editText_key">target_editText</string>
+    <string-array name="pref_increments">
+        <item>&#188; Cups</item>
+        <item>&#8531; Cups</item>
+        <item>&#189; Cups</item>
+        <item>1 Cup</item>
+        <item>2 Cups </item>
+    </string-array>
+    <string-array name="pref_increments_values">
+        <item>0.25</item>
+        <item>0.33</item>
+        <item>0.5</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

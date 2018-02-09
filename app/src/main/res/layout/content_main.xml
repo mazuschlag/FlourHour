@@ -8,21 +8,31 @@
     tools:context="com.markazuschlag.flourhour.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ImageView
-        android:id="@+id/main_button"
-        android:layout_width="156dp"
-        android:layout_height="179dp"
+    <TextView
+        android:id="@+id/countText"
+        style="@style/CountText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:text="@string/count_init"
+        app:layout_constraintBottom_toTopOf="@+id/countButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.842" />
+
+    <ImageView
+        android:id="@+id/countButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
         android:contentDescription="@string/click_description"
         android:src="@drawable/ic_no_touch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

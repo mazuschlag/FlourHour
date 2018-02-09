@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    public ImageView mMainButton;
+    private TextView mCountText;
+    private ImageView mCountButton;
+    private int mCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,14 +23,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mMainButton = findViewById(R.id.main_button);
-        mMainButton.setOnTouchListener(new View.OnTouchListener() {
+        mCountText = findViewById(R.id.countText);
+        mCountButton = findViewById(R.id.countButton);
+        mCount = 0;
+        mCountButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
+                        mCountButton.setImageResource(R.drawable.ic_on_touch);
+                        mCountText.setText(String.valueOf(++mCount));
                         break;
                     case MotionEvent.ACTION_UP:
+                        mCountButton.setImageResource(R.drawable.ic_no_touch);
                         break;
                     default:
                         break;

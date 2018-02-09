@@ -6,6 +6,7 @@
     <string name="increment_by">Increment By</string>
     <string name="increments_list_key">increments_list</string>
     <string name="target_editText_key">target_editText</string>
+    <string name="start">Start!</string>
     <string-array name="pref_increments">
         <item>&#188; Cups</item>
         <item>&#8531; Cups</item>

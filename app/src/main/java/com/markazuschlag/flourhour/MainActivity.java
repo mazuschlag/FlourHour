@@ -3,69 +3,64 @@ package com.markazuschlag.flourhour;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 
-public class MainActivity extends AppCompatActivity {
-    private TextView mCountText;
-    private ImageView mCountButton;
-    private int mCount;
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public static final String EXTRA_TARGET = "com.markazuschlag.flourhour.TARGET";
+    public static final String EXTRA_INCREMENT_BY = "com.markazuschlag.flourhour.increment.BY";
+    private EditText mTargetEditText;
+    private Spinner mIncrementSpin;
+    private String mTarget;
+    private String mIncrement;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        mCountText = findViewById(R.id.countText);
-        mCountButton = findViewById(R.id.countButton);
-        mCount = 0;
-        mCountButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch(motionEvent.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        mCountButton.setImageResource(R.drawable.ic_on_touch);
-                        mCountText.setText(String.valueOf(++mCount));
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        mCountButton.setImageResource(R.drawable.ic_no_touch);
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });
-    }
+        mTargetEditText = findViewById(R.id.targetEditText);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            return true;
+        mIncrementSpin = findViewById(R.id.incrementSpinner);
+        if (mIncrementSpin != null) {
+            mIncrementSpin.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         }
 
-        return super.onOptionsItemSelected(item);
+        ArrayAdapter<CharSequence> incrementAdapt = ArrayAdapter.createFromResource(this,
+                R.array.pref_increments, android.R.layout.simple_spinner_item);
+
+        incrementAdapt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        if (mIncrementSpin != null) {
+            mIncrementSpin.setAdapter(incrementAdapt);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        // Get the selected item and trigger the showText function
+        mIncrement = adapterView.getItemAtPosition(i).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void startCounting(View view) {
+        mIncrement = mIncrementSpin.getSelectedItem().toString();
+        mTarget = mTargetEditText.getText().toString();
+
+        Bundle extras = new Bundle();
+        extras.putString(EXTRA_TARGET, mTarget);
+        extras.putString(EXTRA_INCREMENT_BY, mIncrement);
+
+        Intent intent = new Intent (this, CountActivity.class);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

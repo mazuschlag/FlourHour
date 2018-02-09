@@ -7,18 +7,14 @@
     <string name="increments_list_key">increments_list</string>
     <string name="target_editText_key">target_editText</string>
     <string name="start">Start!</string>
+    <string name="ready">Ready!</string>
+    <string name="cups_left"> left!</string>
+    <string name="default_increment">&#189; Cups</string>
     <string-array name="pref_increments">
         <item>&#188; Cups</item>
         <item>&#8531; Cups</item>
         <item>&#189; Cups</item>
-        <item>1 Cup</item>
+        <item>Cups</item>
         <item>2 Cups </item>
-    </string-array>
-    <string-array name="pref_increments_values">
-        <item>0.25</item>
-        <item>0.33</item>
-        <item>0.5</item>
-        <item>1</item>
-        <item>2</item>
     </string-array>
 </resources>

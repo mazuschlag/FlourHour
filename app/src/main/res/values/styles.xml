@@ -18,13 +18,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="targetEdit" parent="AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:minEms">3</item>
+        <item name="android:maxEms">4</item>
+        <item name="android:hint">13</item>
+        <item name="android:gravity">right</item>
+    </style>
+
     <style name="CountText" parent="AppTheme">
         <item name="android:textSize">72sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="DescriptionText" parent="AppTheme">
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">36sp</item>
     </style>
 
 </resources>

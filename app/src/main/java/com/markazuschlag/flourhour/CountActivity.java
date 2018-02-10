@@ -8,12 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 import static com.markazuschlag.flourhour.MainActivity.EXTRA_INCREMENT_BY;
 import static com.markazuschlag.flourhour.MainActivity.EXTRA_TARGET;
 
 public class CountActivity extends AppCompatActivity {
     public static final String SAVE_COUNT = "com.markazuschlag.flourhour.save.COUNT";
     public static final String SAVE_DESCRIPTION = "com.markazuschlag.flourhour.save.DESCRIPTION";
+    private static final int DEFAULT_COUNT = 13;
     private TextView mCountText;
     private TextView mDescriptionText;
     private ImageView mCountButton;
@@ -39,11 +42,16 @@ public class CountActivity extends AppCompatActivity {
 
         } else if (extras != null) {
             mTarget = extras.getString(EXTRA_TARGET);
-            mCount = Integer.parseInt(mTarget);
+            if (mTarget != null && !mTarget.isEmpty()) {
+                mCount = Integer.parseInt(mTarget);
+            } else {
+                mCount = DEFAULT_COUNT;
+                mTarget = String.valueOf(mCount);
+            }
             mIncrementBy = extras.getString(EXTRA_INCREMENT_BY);
 
         } else {
-            mCount = 10;
+            mCount = DEFAULT_COUNT;
             mTarget = String.valueOf(mCount);
             mIncrementBy = getString(R.string.default_increment);
         }

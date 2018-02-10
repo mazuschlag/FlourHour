@@ -8,13 +8,13 @@
     <string name="target_editText_key">target_editText</string>
     <string name="start">Start!</string>
     <string name="ready">Ready!</string>
-    <string name="cups_left"> left!</string>
-    <string name="default_increment">&#189; Cups</string>
+    <string name="cups_left">&#160;left!</string>
+    <string name="default_increment">&#189; cups</string>
     <string-array name="pref_increments">
-        <item>&#188; Cups</item>
-        <item>&#8531; Cups</item>
-        <item>&#189; Cups</item>
-        <item>Cups</item>
-        <item>2 Cups </item>
+        <item>&#188; cups</item>
+        <item>&#8531; cups</item>
+        <item>&#189; cups</item>
+        <item>cups</item>
+        <item>2 cups </item>
     </string-array>
 </resources>

@@ -1,6 +1,7 @@
 package com.markazuschlag.flourhour;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,10 +14,14 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public static final String EXTRA_TARGET = "com.markazuschlag.flourhour.extra.TARGET";
     public static final String EXTRA_INCREMENT_BY = "com.markazuschlag.flourhour.extra.INCREMENTBY";
-    public static final String SAVE_TARGET = "com.markazuschlag.flourhour.save.TARGET";
-    public static final String SAVE_INCREMENT_BY = "com.markazuschlag.flourhour.save.INCREMENTBY";
+    //public static final String SAVE_TARGET = "com.markazuschlag.flourhour.save.TARGET";
+    //public static final String SAVE_INCREMENT_BY = "com.markazuschlag.flourhour.save.INCREMENTBY";
+    public static final String TARGET_KEY = "com.markazuschlag.flourhour.TARGET.KEY";
+    public static final String INCREMENT_BY_KEY = "com.markazuschlag.flourhour.INCREMENTBY.KEY";
+    private static final String sharedPrefFile = "com.markazuschlag.flourhour.hellosharedprefs";
     private EditText mTargetEditText;
     private Spinner mIncrementSpin;
+    private SharedPreferences mPreferences;
     private String mTarget;
     private String mIncrement;
 
@@ -41,13 +46,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             mIncrementSpin.setAdapter(incrementAdapt);
         }
 
-        if (savedInstanceState != null) {
-            String currentTarget = savedInstanceState.getString(SAVE_TARGET);
-            int mIncrementIndex = savedInstanceState.getInt(SAVE_INCREMENT_BY);
-
-            mTargetEditText.setText(currentTarget);
-            mIncrementSpin.setSelection(mIncrementIndex);
-        }
+        mPreferences = getSharedPreferences(sharedPrefFile, MODE_PRIVATE);
+        mTarget = mPreferences.getString(TARGET_KEY, "");
+        mTargetEditText.setText(mTarget);
+        mIncrementSpin.setSelection(mPreferences.getInt(INCREMENT_BY_KEY, 2));
     }
 
     @Override
@@ -61,11 +63,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         // Nothing to see here
     }
 
+    /* Not needed with SharedPreferences
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(SAVE_TARGET, mTargetEditText.getText().toString());
         outState.putInt(SAVE_INCREMENT_BY, mIncrementSpin.getSelectedItemPosition());
+    }*/
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor preferencesEditor = mPreferences.edit();
+        preferencesEditor.putString(TARGET_KEY, mTargetEditText.getText().toString());
+        preferencesEditor.putInt(INCREMENT_BY_KEY, mIncrementSpin.getSelectedItemPosition());
+        preferencesEditor.apply();
     }
 
     public void startCounting(View view) {

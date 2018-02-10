@@ -12,7 +12,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,12 +23,17 @@
         <activity
             android:name=".CountActivity"
             android:label="Count Activity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.markazuschlag.flourhour.MainActivity"></meta-data>
+                android:value="com.markazuschlag.flourhour.MainActivity" />
         </activity>
-        <activity android:name=".FinishActivity"></activity>
+        <activity android:name=".FinishActivity"
+            android:label="Finish Activity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

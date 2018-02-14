@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="android:actionBarStyle">@style/ThemeActionBar</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionBarStyle">@style/ThemeActionBar</item>
+        <item name="windowActionBarOverlay">true</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -33,6 +37,14 @@
 
     <style name="DescriptionText" parent="AppTheme">
         <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="ThemeActionBar"
+        parent="Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">@null</item>
+        <item name="background">@null</item>
+        <item name="android:displayOptions">showHome|useLogo</item>
+        <item name="displayOptions">showHome|useLogo</item>
     </style>
 
 </resources>
